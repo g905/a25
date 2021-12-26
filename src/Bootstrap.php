@@ -49,7 +49,14 @@ switch ($routeInfo[0]) {
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
         $viewController = new Controllers\ViewController();
-        $viewController->process($handler, $vars);
+        $viewController->process($request, $response, $handler, $vars);
 
         break;
 }
+
+
+foreach ($response->getHeaders() as $header) {
+    header($header, false);
+}
+
+echo $response->getContent();

@@ -10,7 +10,7 @@ class Template {
     static function view($file, $data = array()) {
         $cached_file = self::cache($file);
         extract($data, EXTR_SKIP);
-        require $cached_file;
+        return $cached_file;
     }
 
     static function cache($file) {
@@ -87,5 +87,4 @@ class Template {
     }
 
 }
-
 ?>

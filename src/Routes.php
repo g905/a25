@@ -12,10 +12,9 @@ return [
     ['GET', '/', 'PageController@index'],
     ['GET', '/{id:\d+}', 'PageController@index'],
     ['GET', '/test', 'PageController@testPage'],
-    ['GET', '/hello-world', function () {
-            echo 'Hello World';
-        }],
-    ['GET', '/another-route', function () {
-            echo 'This works too';
-        }],
+    ['GET', '/about', 'PageController@aboutPage'],
+    ['GET', '/invates', 'PageController@invatesPage'],
+    ['GET', '/marks', 'PageController@marksPage'],
+    ['GET', '/dig', 'PageController@digPage'],
+    ['POST', '/order-form', 'FormController@index'],
 ];

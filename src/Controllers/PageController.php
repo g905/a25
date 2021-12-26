@@ -28,11 +28,27 @@ class PageController {
             $id = $this->vars["id"];
         }
 
-        return ["index.html", ["output" => $id]];
+        return ["index.html", ["id" => $id]];
     }
 
     public function testPage() {
         return "testPage.html";
+    }
+
+    public function aboutPage() {
+        return "aboutPage.html";
+    }
+
+    public function invatesPage() {
+        return "invatesPage.html";
+    }
+
+    public function marksPage() {
+        return "marksPage.html";
+    }
+
+    public function digPage() {
+        return "digPage.html";
     }
 
 }

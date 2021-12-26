@@ -8,7 +8,9 @@
 
 namespace A25\Controllers;
 
-include __DIR__ . '/../Template.php';
+use \Http\HttpRequest as Request;
+use \Http\HttpResponse as Response;
+use Template;
 
 /**
  * Description of TestController
@@ -17,18 +19,23 @@ include __DIR__ . '/../Template.php';
  */
 class ViewController {
 
-    public function process($handler, $vars) {
+    public function process(Request $request, Response $response, $handler, $vars) {
+
         $a = explode("@", $handler);
         $a[0] = "A25\Controllers\\" . $a[0];
-        $page = call_user_func([new $a[0]($vars), $a[1]]);
-        if (is_array($page)) {
-            if (!isset($page[1])) {
-                \Template::view($page[0]);
-            } else {
-                \Template::view($page[0], $page[1]);
-            }
+
+        if ($request->getMethod() == "POST") {
+            $response->setHeader('Content-Type: application/json', false);
+            $response->setContent(call_user_func([new $a[0]($vars), $a[1]]));
+            return $response;
         } else {
-            \Template::view($page);
+
+            $page = call_user_func([new $a[0]($vars), $a[1]]);
+
+            $pageName = is_array($page) ? $page[0] : $page;
+            $vars = is_array($page) && count($page) > 1 ? $page[1] : [];
+
+            $response->setContent(file_get_contents(Template::view($pageName, $vars)));
         }
     }
 

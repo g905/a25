@@ -1,9 +1,7 @@
-{% extends layout.html %}
-
-{% block title %}A25 Test task{% endblock %}
-{% block content %}
-
-{% include carousel.html %}
+{%extends layout.html%}
+{%block title%}A25 Test task{%endblock%}
+{%block content%}
+{%include carousel.html%}
 <div class="container">
     <div class="row">
         <div class="col-12 col-lg-6">
@@ -30,5 +28,5 @@
         </div>
     </div>
 </div>
-{% include orderForm.html %}
-{% endblock %}
+{%include orderForm.html%}
+{%endblock%}
